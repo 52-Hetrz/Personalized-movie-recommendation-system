@@ -22,6 +22,7 @@ public class CommentController {
     @ResponseBody
     void insertComment(HttpServletRequest httpServletRequest){
         String userId=httpServletRequest.getParameter("userId");
+        //ok
         String musicId=httpServletRequest.getParameter("musicId");
         String comment=httpServletRequest.getParameter("comment");
         commentService.insertComment(comment,userId,Integer.parseInt(musicId));
