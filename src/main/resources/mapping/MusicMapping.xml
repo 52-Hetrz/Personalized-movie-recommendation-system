@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.MusicMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.model.Music">
+        <result column="musicId"    property="musicId"  jdbcType="INTEGER" />
+        <result column="musicName"  property="musicName"    jdbcType="VARCHAR" />
+        <result column="userId"     property="userId"   jdbcType="VARCHAR" />
+        <result column="address"    property="address"  jdbcType="VARCHAR"  />
+        <result column="image"      property="image"    jdbcType="VARCHAR"/>
+        <result column="comments"   property="comments" jdbcType="INTEGER"/>
+        <result column="likes"      property="likes"    jdbcType="INTEGER"  />
+    </resultMap>
+
+    <insert id="insertMusic">
+        INSERT INTO music VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},
+                                #{param6},#{param7})
+    </insert>
+
+    <insert id="insertMusicWithoutId">
+        INSERT INTO music(musicName,userId,address,image,comments,likes)
+            VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+    </insert>
+
+    <delete id="deleteMusicById">
+        DELETE FROM music WHERE musicId=#{musicId}
+    </delete>
+
+    <select id="findMusicById"  resultType="Music">
+        select * from music where musicId=#{musicId}
+    </select>
+
+    <select id="findMusicByUserId"  resultType="INTEGER">
+        select musicId from music where userId=#{userId}
+    </select>
+
+    <select id="selectLikesByMusicId" resultType="INTEGER">
+        select likes from music where musicId=#{musicId}
+    </select>
+
+    <update id="updateLikesByMusicId" >
+        update music set likes=#{param2} where musicId=#{param1}
+    </update>
+
+    <select id="selectCommentsByMusicId" resultType="INTEGER">
+        select comments from music where musicId=#{musicId}
+    </select>
+
+    <update id="updateCommentsByMusicId" >
+        update music set comments=#{param2} where musicId=#{param1}
+    </update>
+
+
+
+
+</mapper>

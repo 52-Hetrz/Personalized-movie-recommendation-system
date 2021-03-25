@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="base/layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>users</title>
+</head>
+<body>
+User:
+<br>
+<form action="./insertUser" method="get">
+    <label>
+        UserName:
+        <input type="text" name="userName" size="30" >
+    </label>
+    <br>
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        password:
+        <input type="password" name="password" size="30" >
+    </label>
+    <br>
+    <label>
+        introduction:
+        <input type="text" name="introduction" size="30" >
+    </label>
+    <br>
+    <label>
+        sex:
+        <input type="text" name="sex" size="30" >
+    </label>
+
+    <input type="submit" value="insert user">
+</form>
+
+<form action="./deleteUserById" method="get">
+    <label>
+        id:
+        <input type="text" name="id" size="30" >
+    </label>
+    <input type="submit" value="delete user">
+</form>
+
+<form action="./findByUserId" method="get">
+    <label>
+        id:
+        <input type="text" name="id" size="30" >
+    </label>
+    <input type="submit" value="search user">
+</form>
+
+<form action="./updateIntroduction" method="get">
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        introduction:
+        <input type="text" name="introduction" size="30" >
+    </label>
+    <input type="submit" value="update introduction">
+</form>
+
+<form action="./updatePassword" method="get">
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        oldPassword:
+        <input type="password" name="oldPassword" size="30" >
+    </label>
+    <br>
+    <label>
+        newPassword:
+        <input type="password" name="newPassword1" size="30" >
+    </label>
+    <br>
+    <label>
+        newPassword again:
+        <input type="password" name="newPassword2" size="30" >
+    </label>
+    <br>
+    <input type="submit" value="update password">
+</form>
+<br><br>
+Music:
+<br>
+<form action="./insertMusicWithoutId" method="get">
+    <label>
+        MusicName:
+        <input type="text" name="musicName" size="30" >
+    </label>
+    <br>
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        address:
+        <input type="text" name="address" size="30" >
+    </label>
+    <br>
+    <label>
+        image:
+        <input type="text" name="image" size="30" >
+    </label>
+    <br>
+
+    <input type="submit" value="insert music">
+</form>
+
+<form action="./deleteMusicById" method="get">
+    <label>
+        id:
+        <input type="text" name="musicId" size="30" >
+    </label>
+    <input type="submit" value="delete music">
+</form>
+
+<form action="./findMusicById" method="get">
+    <label>
+        findMusicById-musicId:
+        <input type="text" name="musicId" size="30" >
+    </label>
+    <input type="submit" value="search music">
+</form>
+
+<form action="./findMusicByUserId" method="get">
+    <label>
+        findMusicByUserId-userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <input type="submit" value="search music">
+</form>
+
+<br><br>
+Likes:
+<br>
+<form action="./insertLike" method="get">
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        musicId:
+        <input type="text" name="musicId" size="30" >
+    </label>
+    <br>
+    <input type="submit" value="insert">
+</form>
+
+<form action="./deleteLike" method="get">
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        musicId:
+        <input type="text" name="musicId" size="30" >
+    </label>
+    <br>
+    <input type="submit" value="delete">
+</form>
+
+<br><br>
+Comments:
+<br>
+<form action="./insertComment" method="get">
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        musicId:
+        <input type="text" name="musicId" size="30" >
+    </label>
+    <br>
+    <label>
+        comment:
+        <input type="text" name="comment" size="30" >
+    </label>
+    <br>
+    <input type="submit" value="insert">
+</form>
+
+<form action="./deleteComment" method="get">
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        musicId:
+        <input type="text" name="musicId" size="30" >
+    </label>
+    <br>
+    <input type="submit" value="delete">
+</form>
+
+<form action="./selectCommentsByUserId" method="get">
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <input type="submit" value="select">
+</form>
+
+<form action="./selectCommentsByMusicId" method="get">
+    <label>
+        musicId:
+        <input type="text" name="musicId" size="30" >
+    </label>
+    <input type="submit" value="select">
+</form>
+
+<form action="./selectCommentsByUserAndMusicId" method="get">
+    <label>
+        userId:
+        <input type="text" name="userId" size="30" >
+    </label>
+    <br>
+    <label>
+        musicId:
+        <input type="text" name="musicId" size="30" >
+    </label>
+    <input type="submit" value="select">
+</form>
+
+</body>
+</html>

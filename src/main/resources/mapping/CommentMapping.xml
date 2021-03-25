@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.CommentMapper">
+
+    <resultMap id="BaseResultMap" type="Comment">
+        <result column="commentId"    property="commentId"  jdbcType="INTEGER" />
+        <result column="comment"     property="comment"   jdbcType="VARCHAR" />
+        <result column="userId"     property="userId"       jdbcType="VARCHAR" />
+        <result column="musicId"    property="musicId"      jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="insertComment">
+        insert into comments(comment,userId,musicId) values(#{param1},#{param2},#{param3})
+    </insert>
+
+    <delete id="deleteLikeByUserAndMusicId">
+        delete from comments where userId=#{param1} and musicId=#{param2}
+    </delete>
+
+    <select id="selectCommentsByUserId" resultType="Comment">
+        select * from comments where userId=#{userId}
+    </select>
+
+    <select id="selectCommentsByMusicId" resultType="Comment">
+        select * from comments where musicId=#{musicId}
+    </select>
+
+    <select id="selectCommentsByUserAndMusicId" resultType="Comment">
+        select * from comments where userId=#{param1} and musicId=#{param2}
+    </select>
+
+
+</mapper>
