@@ -1,11 +1,8 @@
 package com.example.demo.mapper;
 
-import com.example.demo.dao.Movie;
 import com.example.demo.dao.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
 
 /**
  * @ClassName UserMapper
@@ -22,4 +19,5 @@ public interface UserMapper {
     Integer selectUserIdByName(String name);
     User selectUserById(int id);
     String selectUserNameById(int id);
+    String selectPasswordByUserName(String name);
 }

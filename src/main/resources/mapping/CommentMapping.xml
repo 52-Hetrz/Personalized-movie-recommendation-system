@@ -9,7 +9,7 @@
     <resultMap id="BaseResultMap" type="com.example.demo.dao.Comment">
         <result column="id" property="id" jdbcType="INTEGER" />
         <result column="content" property="content" jdbcType="VARCHAR"/>
-        <result column="time" property="time" jdbcType="TIMESTAMP"/>
+        <result column="time" property="time" jdbcType="DATE"/>
         <result column="score" property="score" jdbcType="INTEGER"/>
         <result column="userid" property="userid" jdbcType="INTEGER"/>
         <result column="movieid" property="movieid" jdbcType="INTEGER"/>

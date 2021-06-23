@@ -31,6 +31,10 @@
         select name from user where id = #{id}
     </select>
 
+    <select id="selectPasswordByUserName" resultType="String">
+        select password from user where name = #{name}
+    </select>
+
 
 
 </mapper>

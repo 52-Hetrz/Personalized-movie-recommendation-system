@@ -24,7 +24,7 @@ public class MovieServiceImpl implements MovieService {
     MovieMapper movieMapper;
 
     @Override
-    public ArrayList<MovieVO> selectCollectMoviesByUserId(int userId) {
+    public ArrayList<MovieVO> searchCollectMoviesByUserId(int userId) {
         ArrayList<Movie> movieArrayList = movieMapper.selectCollectMoviesByUserId(userId);
         ArrayList<MovieVO> movieVOs = new ArrayList<>();
         for(Movie movie : movieArrayList ){
@@ -34,7 +34,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public String selectMovieNameById(int id) {
+    public String searchMovieNameById(int id) {
         return movieMapper.selectMovieNameById(id);
     }
 }

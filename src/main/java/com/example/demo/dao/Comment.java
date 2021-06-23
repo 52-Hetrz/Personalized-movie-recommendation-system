@@ -1,6 +1,6 @@
 package com.example.demo.dao;
 
-import javax.persistence.criteria.CriteriaBuilder;
+import java.sql.Date;
 
 /**
  * @ClassName Comment
@@ -14,12 +14,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 public class Comment {
     private int id;
     private String content;
-    private String time;
+    private Date time;
     private int score;
     private int userId;
     private int movieId;
 
-    public Comment(Integer id, String content, String time, Integer score, Integer userId, Integer movieId){
+    public Comment(Integer id, String content, Date time, Integer score, Integer userId, Integer movieId){
         setId(id);
         setContent(content);
         setTime(time);
@@ -44,11 +44,11 @@ public class Comment {
         this.content = content;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

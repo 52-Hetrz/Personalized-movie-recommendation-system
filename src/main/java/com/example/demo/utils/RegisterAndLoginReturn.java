@@ -1,4 +1,6 @@
-package com.example.demo.VO;
+package com.example.demo.utils;
+
+import com.example.demo.VO.UserVO;
 
 /**
  * @ClassName RegisterAndLoginReturn

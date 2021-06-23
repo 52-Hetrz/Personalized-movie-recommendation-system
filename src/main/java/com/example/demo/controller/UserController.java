@@ -1,14 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.VO.MovieVO;
-import com.example.demo.VO.RegisterAndLoginReturn;
+
+import com.example.demo.utils.RegisterAndLoginReturn;
 import com.example.demo.VO.UserVO;
-import com.example.demo.dao.Movie;
 import com.example.demo.dao.User;
 import com.example.demo.service.impl.CommentServiceImpl;
 import com.example.demo.service.impl.MovieServiceImpl;
 import com.example.demo.service.impl.UserServiceImpl;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+
 
 /**
  * @ClassName UserController
@@ -37,22 +35,21 @@ public class UserController {
     @Autowired
     CommentServiceImpl commentService;
 
-
     /**
-     * 向数据库中插入用户数据
+     * 用户注册接口
      * @param servletRequest 网络协议请求
-     * @return null
+     * @return RegisterAndLoginReturn
      */
     @GetMapping("/register")
     @ResponseBody
-    public RegisterAndLoginReturn insertUser(HttpServletRequest servletRequest){
+    public RegisterAndLoginReturn register(HttpServletRequest servletRequest){
         RegisterAndLoginReturn registerAndLoginReturn = new RegisterAndLoginReturn(false, "", null);
         String name = servletRequest.getParameter("name");
         String firstPassword = servletRequest.getParameter("firstPassword");
         String secondPassword = servletRequest.getParameter("secondPassword");
         String mail = servletRequest.getParameter("mail");
         String image = "//";
-        if(userService.selectUserIdByName(name)!= null)
+        if(userService.searchUserIdByName(name)!= null)
             registerAndLoginReturn.setWarning("用户名已存在");
         else{
             int comparePassword = comparePassword(firstPassword, secondPassword);
@@ -63,10 +60,38 @@ public class UserController {
             }else{
                 userService.insertUser(new User(name, firstPassword, mail, image));
                 registerAndLoginReturn.setIsSuccessful(true);
-                int id = userService.selectUserIdByName(name);
+                int id = userService.searchUserIdByName(name);
                 registerAndLoginReturn.setUserVO(makeUserVOById(id));
             }
 
+        }
+        return registerAndLoginReturn;
+    }
+
+
+    /**
+     * 用户登录接口
+     * @param httpServletRequest 网络协议请求
+     * @return RegisterAndLoginReturn
+     */
+    @GetMapping("/login")
+    @ResponseBody
+    public RegisterAndLoginReturn login(HttpServletRequest httpServletRequest){
+        String name = httpServletRequest.getParameter("name");
+        String password = httpServletRequest.getParameter("password");
+        RegisterAndLoginReturn registerAndLoginReturn =
+                new RegisterAndLoginReturn(false, "",null);
+        if(userService.searchUserIdByName(name) == null){
+            registerAndLoginReturn.setWarning("用户名不存在");
+        }else{
+            String databasePassword = userService.searchPasswordByUserName(name);
+            int compareResult = comparePassword(databasePassword, password);
+            if(compareResult == 2){
+                registerAndLoginReturn.setWarning("密码错误");
+            }else {
+                registerAndLoginReturn.setIsSuccessful(true);
+                registerAndLoginReturn.setUserVO(makeUserVOById(userService.searchUserIdByName(name)));
+            }
         }
         return registerAndLoginReturn;
     }
@@ -97,9 +122,9 @@ public class UserController {
      */
     private UserVO makeUserVOById(int userId){
 
-        return new UserVO(userService.selectUserById(userId),
-                movieService.selectCollectMoviesByUserId(userId),
-                commentService.selectCommentsByUserId(userId));
+        return new UserVO(userService.searchUserById(userId),
+                movieService.searchCollectMoviesByUserId(userId),
+                commentService.searchCommentsByUserId(userId));
     }
 
 }

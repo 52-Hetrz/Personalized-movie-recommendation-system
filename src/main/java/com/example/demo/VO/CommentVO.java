@@ -2,6 +2,7 @@ package com.example.demo.VO;
 
 import com.example.demo.dao.Comment;
 
+
 /**
  * @ClassName CommentVO
  * @Description comment类和前端通信的类
@@ -21,9 +22,10 @@ public class CommentVO {
     private String userName;
 
     public CommentVO(Comment comment, String userName, String movieName){
+        System.out.println(comment.getTime().toString());
         setId(comment.getId());
         setContent(comment.getContent());
-        setTime(comment.getTime());
+        setTime(comment.getTime().toString());
         setScore(comment.getScore());
         setMovieId(comment.getMovieId());
         setMovieName(movieName);

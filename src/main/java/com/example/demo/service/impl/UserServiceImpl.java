@@ -1,14 +1,11 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.VO.MovieVO;
-import com.example.demo.dao.Movie;
 import com.example.demo.dao.User;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 
 /**
  * @ClassName UserServiceImpl
@@ -30,17 +27,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer selectUserIdByName(String name){
+    public Integer searchUserIdByName(String name){
         return userMapper.selectUserIdByName(name);
     }
 
     @Override
-    public User selectUserById(int id){
+    public User searchUserById(int id){
         return userMapper.selectUserById(id);
     }
 
     @Override
-    public String selectUserNameById(int id) {
+    public String searchUserNameById(int id) {
         return userMapper.selectUserNameById(id);
+    }
+
+    @Override
+    public String searchPasswordByUserName(String name) {
+        return userMapper.selectPasswordByUserName(name);
     }
 }

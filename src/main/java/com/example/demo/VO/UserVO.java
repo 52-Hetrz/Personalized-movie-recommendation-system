@@ -21,6 +21,7 @@ public class UserVO {
     private String image;
     private ArrayList<MovieVO> collectMovies;
     private ArrayList<CommentVO> comments;
+
     /**
     public UserVO(int id, String name, String mail, String image, ArrayList<MovieVO> collectMovies){
         setId(id);

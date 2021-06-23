@@ -1,12 +1,8 @@
 package com.example.demo.service;
 
-
-import com.example.demo.VO.MovieVO;
-import com.example.demo.dao.Movie;
 import com.example.demo.dao.User;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 
 @Service
 public interface UserService {
@@ -22,19 +18,26 @@ public interface UserService {
      * @param name 用户名
      * @return 该用户id
      */
-    Integer selectUserIdByName(String name);
+    Integer searchUserIdByName(String name);
 
     /**
      * 根据用户id选取用户信息
      * @param id 用户id
      * @return User类：存储该用户信息
      */
-    User selectUserById(int id);
+    User searchUserById(int id);
 
     /**
      * 根据用户id查找用户名
      * @param id    用户id
      * @return  String：用户名
      */
-    String selectUserNameById(int id);
+    String searchUserNameById(int id);
+
+    /**
+     * 根据用户名查找用户的密码
+     * @param name 用户名
+     * @return String：用户密码
+     */
+    String searchPasswordByUserName(String name);
 }

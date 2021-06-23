@@ -29,13 +29,13 @@ public class CommentServiceImpl implements CommentService {
     MovieServiceImpl movieService;
 
     @Override
-    public ArrayList<CommentVO> selectCommentsByUserId(int userId) {
+    public ArrayList<CommentVO> searchCommentsByUserId(int userId) {
         ArrayList<Comment> comments = commentMapper.selectCommentsByUserId(userId);
         ArrayList<CommentVO> commentVOS = new ArrayList<>();
         for(Comment comment:comments){
             commentVOS.add(new CommentVO(comment,
-                    userService.selectUserNameById(comment.getUserId()),
-                    movieService.selectMovieNameById(comment.getMovieId())));
+                    userService.searchUserNameById(comment.getUserId()),
+                    movieService.searchMovieNameById(comment.getMovieId())));
         }
         return commentVOS;
     }
