@@ -23,6 +23,9 @@
         select * from comment where movieid = #{movieid}
     </select>
 
+    <select id="selectCommentById" resultType="com.example.demo.dao.Comment">
+        select * from comment where id = #{id}
+    </select>
 
 
 </mapper>

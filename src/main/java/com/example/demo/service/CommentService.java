@@ -22,4 +22,12 @@ public interface CommentService {
      * @return ArrayList<Comment> 存储该电影的所有影评
      */
     ArrayList<CommentVO> searchCommentsByMovieId(int movieId);
+
+    /**
+     * 根据评论的id查找评论
+     * @param id 评论id
+     * @return Comment：存有该评论的CommentVO对象
+     */
+    CommentVO searchCommentById(int id);
+
 }

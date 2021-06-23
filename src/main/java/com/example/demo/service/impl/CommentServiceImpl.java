@@ -51,4 +51,12 @@ public class CommentServiceImpl implements CommentService {
         }
         return commentVOS;
     }
+
+    @Override
+    public CommentVO searchCommentById(int id) {
+        Comment comment = commentMapper.selectCommentById(id);
+        return new CommentVO(comment,
+                userService.searchUserNameById(comment.getUserId()),
+                movieService.searchMovieNameById(comment.getMovieId()));
+    }
 }

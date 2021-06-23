@@ -60,6 +60,7 @@ public class UserController {
             }else{
                 userService.insertUser(new User(name, firstPassword, mail, image));
                 registerAndLoginReturn.setIsSuccessful(true);
+                registerAndLoginReturn.setWarning("登陆成功");
                 int id = userService.searchUserIdByName(name);
                 registerAndLoginReturn.setUserVO(makeUserVOById(id));
             }
