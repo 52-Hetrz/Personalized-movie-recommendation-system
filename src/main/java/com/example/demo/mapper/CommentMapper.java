@@ -1,0 +1,14 @@
+package com.example.demo.mapper;
+
+import com.example.demo.dao.Comment;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+
+@Mapper
+@ResponseBody
+public interface CommentMapper {
+
+    ArrayList<Comment> selectCommentsByUserId(int userId);
+}

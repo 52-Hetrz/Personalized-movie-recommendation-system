@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.MovieMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.dao.Movie">
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="introduction" property="introduction" jdbcType="VARCHAR"/>
+        <result column="director" property="director" jdbcType="VARCHAR"/>
+        <result column="actor" property="actor" jdbcType="VARCHAR"/>
+        <result column="publish_year" property="publish_year" jdbcType="VARCHAR"/>
+        <result column="score" property="score" jdbcType="VARCHAR"/>
+        <result column="time" property="time" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="mv"  property="mv" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectCollectMoviesByUserId"  resultType="com.example.demo.dao.Movie">
+        select * from movie
+        where id in (
+            select movieid
+            from collect_movie
+            where userid = #{userid}
+        )
+    </select>
+
+    <select id="selectMovieNameById" resultType="String">
+        select name from novie where id = #{id}
+    </select>
+
+</mapper>
