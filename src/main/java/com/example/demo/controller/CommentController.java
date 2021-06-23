@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.VO.CommentVO;
+import com.example.demo.dao.Comment;
 import com.example.demo.service.impl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
 
 /**
  * @ClassName CommentController
@@ -30,5 +32,19 @@ public class CommentController {
     public CommentVO searchCommentById(HttpServletRequest httpServletRequest){
         String id = httpServletRequest.getParameter("id");
         return commentService.searchCommentById(Integer.parseInt(id));
+    }
+
+    @GetMapping("/insertComment")
+    @ResponseBody
+    public int insertComment(HttpServletRequest httpServletRequest){
+        String content = httpServletRequest.getParameter("content");
+        Date date = new Date(System.currentTimeMillis());
+        int score = Integer.parseInt(httpServletRequest.getParameter("score"));
+        int userId = Integer.parseInt(httpServletRequest.getParameter("userId"));
+        int movieId = Integer.parseInt(httpServletRequest.getParameter("movieId"));
+        Comment comment = new Comment(content, date, score, userId, movieId);
+        commentService.insertComment(comment);
+        commentService.recalculateAndUpdateMovieScore(movieId);
+        return 1;
     }
 }

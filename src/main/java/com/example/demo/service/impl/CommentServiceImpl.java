@@ -34,8 +34,8 @@ public class CommentServiceImpl implements CommentService {
         ArrayList<CommentVO> commentVOS = new ArrayList<>();
         for(Comment comment:comments){
             commentVOS.add(new CommentVO(comment,
-                    userService.searchUserNameById(comment.getUserId()),
-                    movieService.searchMovieNameById(comment.getMovieId())));
+                    userService.searchUserNameById(comment.getUserid()),
+                    movieService.searchMovieNameById(comment.getMovieid())));
         }
         return commentVOS;
     }
@@ -46,8 +46,8 @@ public class CommentServiceImpl implements CommentService {
         ArrayList<CommentVO> commentVOS = new ArrayList<>();
         for(Comment comment: comments){
             commentVOS.add(new CommentVO(comment,
-                    userService.searchUserNameById(comment.getUserId()),
-                    movieService.searchMovieNameById(comment.getMovieId())));
+                    userService.searchUserNameById(comment.getUserid()),
+                    movieService.searchMovieNameById(comment.getMovieid())));
         }
         return commentVOS;
     }
@@ -56,7 +56,17 @@ public class CommentServiceImpl implements CommentService {
     public CommentVO searchCommentById(int id) {
         Comment comment = commentMapper.selectCommentById(id);
         return new CommentVO(comment,
-                userService.searchUserNameById(comment.getUserId()),
-                movieService.searchMovieNameById(comment.getMovieId()));
+                userService.searchUserNameById(comment.getUserid()),
+                movieService.searchMovieNameById(comment.getMovieid()));
+    }
+
+    @Override
+    public int insertComment(Comment comment) {
+        return commentMapper.insertComment(comment);
+    }
+
+    @Override
+    public void recalculateAndUpdateMovieScore(int movieid) {
+        commentMapper.recalculateAndUpdateMovieScore(movieid);
     }
 }

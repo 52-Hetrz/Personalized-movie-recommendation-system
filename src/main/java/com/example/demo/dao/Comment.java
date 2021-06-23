@@ -16,16 +16,24 @@ public class Comment {
     private String content;
     private Date time;
     private int score;
-    private int userId;
-    private int movieId;
+    private int userid;
+    private int movieid;
 
-    public Comment(Integer id, String content, Date time, Integer score, Integer userId, Integer movieId){
+    public Comment(Integer id, String content, Date time, Integer score, Integer userid, Integer movieid){
         setId(id);
         setContent(content);
         setTime(time);
         setScore(score);
-        setUserId(userId);
-        setMovieId(movieId);
+        setUserid(userid);
+        setMovieid(movieid);
+    }
+
+    public Comment(String content, Date time, Integer score, Integer userid, Integer movieid){
+        setContent(content);
+        setTime(time);
+        setScore(score);
+        setUserid(userid);
+        setMovieid(movieid);
     }
 
     public int getId() {
@@ -60,19 +68,21 @@ public class Comment {
         this.score = score;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
-    public int getMovieId() {
-        return movieId;
+    public int getMovieid() {
+        return movieid;
     }
 
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
+    public void setMovieid(int movieid) {
+        this.movieid = movieid;
     }
+
+
 }

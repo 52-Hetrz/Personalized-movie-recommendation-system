@@ -13,4 +13,6 @@ public interface CommentMapper {
     ArrayList<Comment> selectCommentsByUserId(int userId);
     ArrayList<Comment> selectCommentsByMovieId(int movieId);
     Comment selectCommentById(int id);
+    int insertComment(Comment comment);
+    void recalculateAndUpdateMovieScore(int movieid);
 }

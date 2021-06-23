@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.VO.CommentVO;
+import com.example.demo.dao.Comment;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,4 +31,17 @@ public interface CommentService {
      */
     CommentVO searchCommentById(int id);
 
+    /**
+     * 向数据库中插入一条影评
+     * @param comment 插入影评的数据
+     * @return 是否插入成功
+     */
+    int insertComment(Comment comment);
+
+    /**
+     * 插入评论之后重新计算电影的得分,并更新电影的评分
+     * @param movieid 电影的id
+     * @return float：重新计算的得分
+     */
+    void recalculateAndUpdateMovieScore(int movieid);
 }

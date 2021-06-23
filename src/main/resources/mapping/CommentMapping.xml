@@ -16,16 +16,37 @@
     </resultMap>
 
     <select id="selectCommentsByUserId" resultType="com.example.demo.dao.Comment">
-        select * from comment where userid = #{userid}
+        select *
+        from comment
+        where userid = #{userid}
     </select>
 
     <select id="selectCommentsByMovieId" resultType="com.example.demo.dao.Comment">
-        select * from comment where movieid = #{movieid}
+        select *
+        from comment
+        where movieid = #{movieid}
     </select>
 
     <select id="selectCommentById" resultType="com.example.demo.dao.Comment">
-        select * from comment where id = #{id}
+        select *
+        from comment
+        where id = #{id}
     </select>
 
+    <insert id="insertComment">
+        insert
+        into comment (content, time, score, userid, movieid)
+        values (#{content},#{time},#{score},#{userid},#{movieid})
+    </insert>
+
+    <select id="recalculateAndUpdateMovieScore">
+        update movie
+        set score = (
+            select avg(score)
+            from comment
+            where movieid = #{movieid}
+        )
+        where id = #{movieid}
+    </select>
 
 </mapper>

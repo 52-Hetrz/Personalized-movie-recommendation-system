@@ -26,7 +26,7 @@ public class CommentVO {
         setContent(comment.getContent());
         setTime(comment.getTime().toString());
         setScore(comment.getScore());
-        setMovieId(comment.getMovieId());
+        setMovieId(comment.getMovieid());
         setMovieName(movieName);
         setUserName(userName);
     }
