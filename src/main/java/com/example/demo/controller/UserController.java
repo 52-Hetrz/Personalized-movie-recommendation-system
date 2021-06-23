@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Version 1.0
  */
 
-@Controller
+//@Controller
 @RestController
 public class UserController {
 

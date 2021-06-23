@@ -34,4 +34,8 @@
         select name from movie where id = #{id}
     </select>
 
+    <select id="selectMovieById" resultType="com.example.demo.dao.Movie">
+        select * from movie where id = #{id}
+    </select>
+
 </mapper>

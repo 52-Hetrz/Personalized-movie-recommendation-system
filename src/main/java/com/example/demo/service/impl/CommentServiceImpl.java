@@ -39,4 +39,16 @@ public class CommentServiceImpl implements CommentService {
         }
         return commentVOS;
     }
+
+    @Override
+    public ArrayList<CommentVO> searchCommentsByMovieId(int movieId) {
+        ArrayList<Comment> comments = commentMapper.selectCommentsByMovieId(movieId);
+        ArrayList<CommentVO> commentVOS = new ArrayList<>();
+        for(Comment comment: comments){
+            commentVOS.add(new CommentVO(comment,
+                    userService.searchUserNameById(comment.getUserId()),
+                    movieService.searchMovieNameById(comment.getMovieId())));
+        }
+        return commentVOS;
+    }
 }

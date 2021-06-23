@@ -2,6 +2,8 @@ package com.example.demo.VO;
 
 import com.example.demo.dao.Movie;
 
+import java.util.ArrayList;
+
 /**
  * @ClassName MovieVO
  * @Description Movie用于前后端通信的类
@@ -24,6 +26,7 @@ public class MovieVO {
     private String type;
     private String image;
     private String mv;
+    private ArrayList<CommentVO> comments;
 
     public MovieVO(int id, String name, String area, String introduction,
                    String director, String actor, String publish_year, float score,
@@ -41,6 +44,22 @@ public class MovieVO {
         setImage(image);
         setMv(mv);
 
+    }
+
+    public MovieVO(Movie movie, ArrayList<CommentVO> comments){
+        setId(movie.getId());
+        setName(movie.getName());
+        setArea(movie.getArea());
+        setIntroduction(movie.getIntroduction());
+        setDirector(movie.getDirector());
+        setActor(movie.getActor());
+        setPublish_year(movie.getPublish_year());
+        setScore(movie.getScore());
+        setTime(movie.getTime());
+        setType(movie.getType());
+        setImage(movie.getImage());
+        setMv(movie.getMv());
+        setComments(comments);
     }
 
     public MovieVO(Movie movie){
@@ -108,6 +127,14 @@ public class MovieVO {
 
     public float getScore() {
         return score;
+    }
+
+    public ArrayList<CommentVO> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<CommentVO> comments) {
+        this.comments = comments;
     }
 
     public void setScore(float score) {

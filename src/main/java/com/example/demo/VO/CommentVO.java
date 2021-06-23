@@ -22,7 +22,6 @@ public class CommentVO {
     private String userName;
 
     public CommentVO(Comment comment, String userName, String movieName){
-        System.out.println(comment.getTime().toString());
         setId(comment.getId());
         setContent(comment.getContent());
         setTime(comment.getTime().toString());

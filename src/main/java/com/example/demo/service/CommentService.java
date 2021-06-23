@@ -15,4 +15,11 @@ public interface CommentService {
      * @return ArrayList<Comment> 存储该用户的所有影评
      */
     ArrayList<CommentVO> searchCommentsByUserId(int userId);
+
+    /**
+     * 根据电影id查找对该电影的评论
+     * @param movieId 电影id
+     * @return ArrayList<Comment> 存储该电影的所有影评
+     */
+    ArrayList<CommentVO> searchCommentsByMovieId(int movieId);
 }

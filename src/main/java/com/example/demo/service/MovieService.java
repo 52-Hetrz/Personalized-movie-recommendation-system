@@ -21,4 +21,12 @@ public interface MovieService {
      * @return String：电影名
      */
     String searchMovieNameById(int id);
+
+    /**
+     * 根据电影id查找电影
+     * @param id 电影id
+     * @return MovieVO：存储该电影信息的MovieVO对象
+     */
+    MovieVO selectMovieById(int id);
+
 }

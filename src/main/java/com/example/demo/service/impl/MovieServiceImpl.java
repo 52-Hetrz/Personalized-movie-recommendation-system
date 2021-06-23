@@ -23,6 +23,9 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     MovieMapper movieMapper;
 
+    @Autowired
+    CommentServiceImpl commentService;
+
     @Override
     public ArrayList<MovieVO> searchCollectMoviesByUserId(int userId) {
         ArrayList<Movie> movieArrayList = movieMapper.selectCollectMoviesByUserId(userId);
@@ -36,5 +39,11 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public String searchMovieNameById(int id) {
         return movieMapper.selectMovieNameById(id);
+    }
+
+    @Override
+    public MovieVO selectMovieById(int id) {
+        Movie movie = movieMapper.selectMovieById(id);
+        return new MovieVO(movie, commentService.searchCommentsByMovieId(id));
     }
 }
