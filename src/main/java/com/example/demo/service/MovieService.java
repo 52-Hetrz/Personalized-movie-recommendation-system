@@ -29,4 +29,11 @@ public interface MovieService {
      */
     MovieVO selectMovieById(int id);
 
+    /**
+     * 根据用户输入检索电影名匹配的电影
+     * @param content 用户输入内容
+     * @return ArrayList<MovieVO>: 符合要求的电影VO集合
+     */
+    ArrayList<MovieVO> fuzzySearchMovieByName(String content);
+
 }

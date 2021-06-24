@@ -46,4 +46,14 @@ public class MovieServiceImpl implements MovieService {
         Movie movie = movieMapper.selectMovieById(id);
         return new MovieVO(movie, commentService.searchCommentsByMovieId(id));
     }
+
+    @Override
+    public ArrayList<MovieVO> fuzzySearchMovieByName(String content) {
+        ArrayList<Movie> movieArrayList = movieMapper.fuzzySearchMovieByName(content);
+        ArrayList<MovieVO> movieVOs = new ArrayList<>();
+        for(Movie movie : movieArrayList ){
+            movieVOs.add(new MovieVO(movie));
+        }
+        return movieVOs;
+    }
 }

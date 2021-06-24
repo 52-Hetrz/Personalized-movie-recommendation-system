@@ -38,5 +38,10 @@
         select * from movie where id = #{id}
     </select>
 
+    <select id="fuzzySearchMovieByName" resultType="com.example.demo.dao.Movie">
+        select *
+        from movie
+        where name like '%${content}%'
+    </select>
 
 </mapper>

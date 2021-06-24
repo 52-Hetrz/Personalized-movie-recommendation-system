@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 /**
  * @ClassName MovieController
@@ -37,6 +38,13 @@ public class MovieController {
     public MovieVO searchMoveById(HttpServletRequest httpServletRequest){
         String movieId = httpServletRequest.getParameter("id");
         return movieService.selectMovieById(Integer.parseInt(movieId));
+    }
+
+    @GetMapping("/fuzzySearchMovieByName")
+    @ResponseBody
+    public ArrayList<MovieVO> fuzzySearchMovieByName(HttpServletRequest httpServletRequest){
+        String content = httpServletRequest.getParameter("content");
+        return movieService.fuzzySearchMovieByName(content);
     }
 
 }

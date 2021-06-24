@@ -47,4 +47,6 @@ public class CommentController {
         commentService.recalculateAndUpdateMovieScore(movieId);
         return 1;
     }
+
+
 }
