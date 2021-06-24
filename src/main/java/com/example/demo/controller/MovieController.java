@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.VO.MovieVO;
 import com.example.demo.service.impl.MovieServiceImpl;
-import org.aspectj.weaver.patterns.HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +42,15 @@ public class MovieController {
     @GetMapping("/fuzzySearchMovieByName")
     @ResponseBody
     public ArrayList<MovieVO> fuzzySearchMovieByName(HttpServletRequest httpServletRequest){
-        String content = httpServletRequest.getParameter("content");
-        return movieService.fuzzySearchMovieByName(content);
+        String name = httpServletRequest.getParameter("name");
+        return movieService.fuzzySelectMovieByName(name);
+    }
+
+    @GetMapping("/fuzzySearchMovieByType")
+    @ResponseBody
+    public ArrayList<MovieVO> fuzzySearchMovieByType(HttpServletRequest httpServletRequest){
+        String type = httpServletRequest.getParameter("type");
+        return movieService.fuzzySelectMovieByType(type);
     }
 
 }

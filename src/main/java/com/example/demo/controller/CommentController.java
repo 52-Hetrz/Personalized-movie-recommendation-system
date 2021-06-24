@@ -6,6 +6,7 @@ import com.example.demo.service.impl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,7 @@ public class CommentController {
         return commentService.searchCommentById(Integer.parseInt(id));
     }
 
-    @GetMapping("/insertComment")
+    @PostMapping("/insertComment")
     @ResponseBody
     public int insertComment(HttpServletRequest httpServletRequest){
         String content = httpServletRequest.getParameter("content");

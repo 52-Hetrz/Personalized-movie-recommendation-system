@@ -48,8 +48,18 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public ArrayList<MovieVO> fuzzySearchMovieByName(String content) {
-        ArrayList<Movie> movieArrayList = movieMapper.fuzzySearchMovieByName(content);
+    public ArrayList<MovieVO> fuzzySelectMovieByName(String name) {
+        ArrayList<Movie> movieArrayList = movieMapper.fuzzySelectMovieByName(name);
+        ArrayList<MovieVO> movieVOs = new ArrayList<>();
+        for(Movie movie : movieArrayList ){
+            movieVOs.add(new MovieVO(movie));
+        }
+        return movieVOs;
+    }
+
+    @Override
+    public ArrayList<MovieVO> fuzzySelectMovieByType(String type) {
+        ArrayList<Movie> movieArrayList = movieMapper.fuzzySelectMovieByType(type);
         ArrayList<MovieVO> movieVOs = new ArrayList<>();
         for(Movie movie : movieArrayList ){
             movieVOs.add(new MovieVO(movie));

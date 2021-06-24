@@ -16,23 +16,33 @@
     </resultMap>
 
     <insert id="insertUser">
-        insert into user (name, password, mail, image) values(#{name}, #{password}, #{mail}, #{image})
+        insert
+        into user (name, password, mail, image)
+        values(#{name}, #{password}, #{mail}, #{image})
     </insert>
 
     <select id="selectUserIdByName" resultType="INTEGER">
-        select id from user where name = #{name}
+        select id
+        from user
+        where name = #{name}
     </select>
 
     <select id="selectUserById" resultType="com.example.demo.dao.User">
-        select * from user where id = #{id}
+        select *
+        from user
+        where id = #{id}
     </select>
 
     <select id="selectUserNameById" resultType="String">
-        select name from user where id = #{id}
+        select name
+        from user
+        where id = #{id}
     </select>
 
     <select id="selectPasswordByUserName" resultType="String">
-        select password from user where name = #{name}
+        select password
+        from user
+        where name = #{name}
     </select>
 
 

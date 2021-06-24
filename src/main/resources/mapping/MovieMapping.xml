@@ -31,17 +31,31 @@
     </select>
 
     <select id="selectMovieNameById" resultType="String">
-        select name from movie where id = #{id}
+        select name
+        from movie
+        where id = #{id}
     </select>
 
     <select id="selectMovieById" resultType="com.example.demo.dao.Movie">
-        select * from movie where id = #{id}
-    </select>
-
-    <select id="fuzzySearchMovieByName" resultType="com.example.demo.dao.Movie">
         select *
         from movie
-        where name like '%${content}%'
+        where id = #{id}
+    </select>
+
+    <select id="fuzzySelectMovieByName" resultType="com.example.demo.dao.Movie">
+        select *
+        from movie
+        where name like '%${name}%'
+        order by score DESC
+        limit 0,10
+    </select>
+
+    <select id="fuzzySelectMovieByType" resultType="com.example.demo.dao.Movie">
+        select *
+        from movie
+        where type like '%${type}%'
+        order by score DESC
+        limit 0,10
     </select>
 
 </mapper>
