@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.VO.MovieClassificationVO;
 import com.example.demo.VO.MovieVO;
+import com.example.demo.dao.ClassificatonName;
 import com.example.demo.dao.MovieClassification;
 import com.example.demo.mapper.ClassificationNameMapper;
 import com.example.demo.mapper.MovieClassificationMapper;
@@ -36,12 +37,12 @@ public class MovieClassificationImpl implements MovieClassificationService {
     public MovieClassificationVO selectMovieClassification(int classifid) {
         ArrayList<MovieClassification> movieClassifications =
                 movieClassificationMapper.selectMovieClassification(classifid);
-        String name = classificationNameMapper.selectClassificationName(classifid);
+        ClassificatonName classificatonName = classificationNameMapper.selectClassificationName(classifid);
         ArrayList<MovieVO> movieVOS = new ArrayList<>();
         for(MovieClassification movieClassification: movieClassifications){
             movieVOS.add(new MovieVO(
                     movieMapper.selectMovieById(movieClassification.getMovieid())));
         }
-        return new MovieClassificationVO(classifid, name, movieVOS);
+        return new MovieClassificationVO(classificatonName, movieVOS);
     }
 }

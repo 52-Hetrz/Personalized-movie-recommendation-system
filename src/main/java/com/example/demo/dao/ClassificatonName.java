@@ -12,10 +12,12 @@ package com.example.demo.dao;
 public class ClassificatonName {
     private int classifid;
     private String name;
+    private String cover;
 
-    ClassificatonName(int classifid, String name){
+    ClassificatonName(Integer classifid, String name, String cover){
         setClassifid(classifid);
         setName(name);
+        setCover(cover);
     }
 
     public int getClassifid() {
@@ -32,5 +34,13 @@ public class ClassificatonName {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }

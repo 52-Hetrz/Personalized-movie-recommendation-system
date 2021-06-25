@@ -1,5 +1,7 @@
 package com.example.demo.VO;
 
+import com.example.demo.dao.ClassificatonName;
+
 import java.util.ArrayList;
 
 /**
@@ -14,12 +16,14 @@ import java.util.ArrayList;
 public class MovieClassificationVO {
     private int classificationId;
     private String name;
+    private String cover;
     private ArrayList<MovieVO> movieList;
 
-    public MovieClassificationVO(int classificationId, String name, ArrayList<MovieVO> movieList){
-        setClassificationId(classificationId);
+    public MovieClassificationVO(ClassificatonName classificatonName, ArrayList<MovieVO> movieList){
+        setClassificationId(classificatonName.getClassifid());
         setMovieList(movieList);
-        setName(name);
+        setName(classificatonName.getName());
+        setCover(classificatonName.getCover());
     }
 
     public int getClassificationId() {
@@ -44,5 +48,13 @@ public class MovieClassificationVO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }
