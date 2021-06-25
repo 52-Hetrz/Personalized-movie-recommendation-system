@@ -45,4 +45,10 @@ public class CommentController {
         commentService.recalculateAndUpdateMovieScore(movieId);
         return 1;
     }
+
+    @GetMapping("/deleteComment")
+    public void deleteComment(HttpServletRequest httpServletRequest){
+        int id = Integer.parseInt(httpServletRequest.getParameter("id"));
+        commentService.deleteComment(id);
+    }
 }

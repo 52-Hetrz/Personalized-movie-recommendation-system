@@ -69,4 +69,9 @@ public class CommentServiceImpl implements CommentService {
     public void recalculateAndUpdateMovieScore(int movieid) {
         commentMapper.recalculateAndUpdateMovieScore(movieid);
     }
+
+    @Override
+    public void deleteComment(int id) {
+        commentMapper.deleteComment(id);
+    }
 }

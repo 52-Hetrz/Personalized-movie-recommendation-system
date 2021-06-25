@@ -39,6 +39,12 @@
         values (#{content},#{time},#{score},#{userid},#{movieid})
     </insert>
 
+    <delete id="deleteComment">
+        delete
+        from comment
+        where id = #{id}
+    </delete>
+
     <select id="recalculateAndUpdateMovieScore">
         update movie
         set score = (

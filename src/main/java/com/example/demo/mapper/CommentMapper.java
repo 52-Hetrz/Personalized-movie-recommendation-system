@@ -15,4 +15,5 @@ public interface CommentMapper {
     Comment selectCommentById(int id);
     int insertComment(Comment comment);
     void recalculateAndUpdateMovieScore(int movieid);
+    void deleteComment(int id);
 }

@@ -44,4 +44,10 @@ public interface CommentService {
      * @return float：重新计算的得分
      */
     void recalculateAndUpdateMovieScore(int movieid);
+
+    /**
+     * 删除用户评价
+     * @param id 用户id
+     */
+    void deleteComment(int id);
 }
