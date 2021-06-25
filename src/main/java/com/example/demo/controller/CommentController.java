@@ -21,7 +21,6 @@ import java.sql.Date;
  * @Version 1.0
  */
 
-@Controller
 @RestController
 public class CommentController {
 
@@ -29,14 +28,12 @@ public class CommentController {
     CommentServiceImpl commentService;
 
     @GetMapping("/searchCommentById")
-    @ResponseBody
     public CommentVO searchCommentById(HttpServletRequest httpServletRequest){
         String id = httpServletRequest.getParameter("id");
         return commentService.searchCommentById(Integer.parseInt(id));
     }
 
     @PostMapping("/insertComment")
-    @ResponseBody
     public int insertComment(HttpServletRequest httpServletRequest){
         String content = httpServletRequest.getParameter("content");
         Date date = new Date(System.currentTimeMillis());
@@ -48,6 +45,4 @@ public class CommentController {
         commentService.recalculateAndUpdateMovieScore(movieId);
         return 1;
     }
-
-
 }

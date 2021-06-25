@@ -12,20 +12,22 @@ import java.util.ArrayList;
 
 
 public class MovieClassificationVO {
-    private int typeId;
+    private int classificationId;
+    private String name;
     private ArrayList<MovieVO> movieList;
 
-    public MovieClassificationVO(int typeId, ArrayList<MovieVO> movieList){
-        setTypeId(typeId);
+    public MovieClassificationVO(int classificationId, String name, ArrayList<MovieVO> movieList){
+        setClassificationId(classificationId);
         setMovieList(movieList);
+        setName(name);
     }
 
-    public int getTypeId() {
-        return typeId;
+    public int getClassificationId() {
+        return classificationId;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+    public void setClassificationId(int classificationId) {
+        this.classificationId = classificationId;
     }
 
     public ArrayList<MovieVO> getMovieList() {
@@ -34,5 +36,13 @@ public class MovieClassificationVO {
 
     public void setMovieList(ArrayList<MovieVO> movieList) {
         this.movieList = movieList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

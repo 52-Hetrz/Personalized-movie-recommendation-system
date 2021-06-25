@@ -20,7 +20,6 @@ import java.util.ArrayList;
  */
 
 
-@Controller
 @RestController
 public class MovieController {
 
@@ -33,21 +32,18 @@ public class MovieController {
      * @return
      */
     @GetMapping("/searchMovieById")
-    @ResponseBody
     public MovieVO searchMoveById(HttpServletRequest httpServletRequest){
         String movieId = httpServletRequest.getParameter("id");
         return movieService.selectMovieById(Integer.parseInt(movieId));
     }
 
     @GetMapping("/fuzzySearchMovieByName")
-    @ResponseBody
     public ArrayList<MovieVO> fuzzySearchMovieByName(HttpServletRequest httpServletRequest){
         String name = httpServletRequest.getParameter("name");
         return movieService.fuzzySelectMovieByName(name);
     }
 
     @GetMapping("/fuzzySearchMovieByType")
-    @ResponseBody
     public ArrayList<MovieVO> fuzzySearchMovieByType(HttpServletRequest httpServletRequest){
         String type = httpServletRequest.getParameter("type");
         return movieService.fuzzySelectMovieByType(type);

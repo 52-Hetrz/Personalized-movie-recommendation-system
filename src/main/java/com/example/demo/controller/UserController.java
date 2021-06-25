@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
  * @Version 1.0
  */
 
-//@Controller
 @RestController
 public class UserController {
 
@@ -41,7 +40,6 @@ public class UserController {
      * @return RegisterAndLoginReturn
      */
     @GetMapping("/register")
-    @ResponseBody
     public RegisterAndLoginReturn register(HttpServletRequest servletRequest){
         RegisterAndLoginReturn registerAndLoginReturn = new RegisterAndLoginReturn(false, "", null);
         String name = servletRequest.getParameter("name");
@@ -76,7 +74,6 @@ public class UserController {
      * @return RegisterAndLoginReturn
      */
     @GetMapping("/login")
-    @ResponseBody
     public RegisterAndLoginReturn login(HttpServletRequest httpServletRequest){
         String name = httpServletRequest.getParameter("name");
         String password = httpServletRequest.getParameter("password");
