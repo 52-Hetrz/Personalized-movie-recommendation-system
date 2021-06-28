@@ -3,9 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.VO.MovieVO;
 import com.example.demo.service.impl.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +45,11 @@ public class MovieController {
     public ArrayList<MovieVO> fuzzySearchMovieByType(HttpServletRequest httpServletRequest){
         String type = httpServletRequest.getParameter("type");
         return movieService.fuzzySelectMovieByType(type);
+    }
+
+    @GetMapping("/searchHotMovies")
+    public ArrayList<MovieVO> searchHotMovies(){
+        return movieService.searchHotMovies();
     }
 
 }

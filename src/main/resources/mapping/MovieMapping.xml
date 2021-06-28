@@ -58,4 +58,15 @@
         limit 0,10
     </select>
 
+    <select id="searchHotMovies" resultType="com.example.demo.dao.Movie">
+        SELECT movie.*
+        from movie, (
+            SELECT movieid
+            from `comment`
+            GROUP BY movieid
+            ORDER BY COUNT(*) DESC
+                LIMIT	0,8) as hotmovie
+        where movie.id = hotmovie.movieid
+    </select>
+
 </mapper>

@@ -43,4 +43,10 @@ public interface MovieService {
      */
     ArrayList<MovieVO> fuzzySelectMovieByType(String type);
 
+    /**
+     * 查找热门电影
+     * @return ArrayList<MovieVO>: 符合要求的电影VO集合
+     */
+    ArrayList<MovieVO> searchHotMovies();
+
 }

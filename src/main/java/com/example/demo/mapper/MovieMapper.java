@@ -16,4 +16,5 @@ public interface MovieMapper {
     Movie selectMovieById(int id);
     ArrayList<Movie> fuzzySelectMovieByName(@Param("name") String name);
     ArrayList<Movie> fuzzySelectMovieByType(@Param("type") String type);
+    ArrayList<Movie> searchHotMovies();
 }

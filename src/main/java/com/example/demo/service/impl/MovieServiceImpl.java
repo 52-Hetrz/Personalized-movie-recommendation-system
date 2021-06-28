@@ -66,4 +66,14 @@ public class MovieServiceImpl implements MovieService {
         }
         return movieVOs;
     }
+
+    @Override
+    public ArrayList<MovieVO> searchHotMovies() {
+        ArrayList<Movie> movieArrayList = movieMapper.searchHotMovies();
+        ArrayList<MovieVO> movieVOs = new ArrayList<>();
+        for(Movie movie : movieArrayList ){
+            movieVOs.add(new MovieVO(movie));
+        }
+        return movieVOs;
+    }
 }
