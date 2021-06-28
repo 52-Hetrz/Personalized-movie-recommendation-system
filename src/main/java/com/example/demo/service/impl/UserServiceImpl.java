@@ -45,4 +45,14 @@ public class UserServiceImpl implements UserService {
     public String searchPasswordByUserName(String name) {
         return userMapper.selectPasswordByUserName(name);
     }
+
+    @Override
+    public void changePassword(String name, String password) {
+        userMapper.changePassword(name, password);
+    }
+
+    @Override
+    public String selectPasswordById(int id) {
+        return userMapper.selectPasswordById(id);
+    }
 }

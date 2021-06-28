@@ -40,4 +40,18 @@ public interface UserService {
      * @return String：用户密码
      */
     String searchPasswordByUserName(String name);
+
+    /**
+     * 修改密码
+     * @param id 用户id
+     * @param password 用户修改之后的密码
+     */
+    void changePassword(String name, String password);
+
+    /**
+     * 根据用户id查询用户密码
+     * @param id 用户id
+     * @return String 用户密码
+     */
+    String selectPasswordById(int id);
 }

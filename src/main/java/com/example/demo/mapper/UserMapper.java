@@ -20,4 +20,6 @@ public interface UserMapper {
     User selectUserById(int id);
     String selectUserNameById(int id);
     String selectPasswordByUserName(String name);
+    void changePassword(String name, String password);
+    String selectPasswordById(int id);
 }

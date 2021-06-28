@@ -45,6 +45,16 @@
         where name = #{name}
     </select>
 
+    <select id="selectPasswordById" resultType="String">
+        select password
+        from user
+        where id = #{id}
+    </select>
 
+    <update id="changePassword">
+        update user
+        set password = #{param2}
+        where name = #{param1}
+    </update>
 
 </mapper>

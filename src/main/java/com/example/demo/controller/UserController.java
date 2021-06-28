@@ -62,7 +62,6 @@ public class UserController {
                 int id = userService.searchUserIdByName(name);
                 registerAndLoginReturn.setUserVO(makeUserVOById(id));
             }
-
         }
         return registerAndLoginReturn;
     }
@@ -89,6 +88,39 @@ public class UserController {
             }else {
                 registerAndLoginReturn.setIsSuccessful(true);
                 registerAndLoginReturn.setUserVO(makeUserVOById(userService.searchUserIdByName(name)));
+            }
+        }
+        return registerAndLoginReturn;
+    }
+
+    @GetMapping("/changePassword")
+    public RegisterAndLoginReturn changePassword(HttpServletRequest httpServletRequest){
+        String name = httpServletRequest.getParameter("name");
+        String oldPassword = httpServletRequest.getParameter("oldPassword");
+        String firstPassword = httpServletRequest.getParameter("firstPassword");
+        String secondPassword = httpServletRequest.getParameter("secondPassword");
+        String databasePassword = userService.searchPasswordByUserName(name);
+        RegisterAndLoginReturn registerAndLoginReturn =
+                new RegisterAndLoginReturn(false, "",null);
+        if(userService.searchUserIdByName(name) == null){
+            registerAndLoginReturn.setWarning("用户名不存在");
+            return registerAndLoginReturn;
+        }
+        if(!oldPassword.equals(databasePassword)){
+            registerAndLoginReturn.setWarning("密码错误");
+            return registerAndLoginReturn;
+        }else{
+            int comparePassword = comparePassword(firstPassword, secondPassword);
+            if (comparePassword == 2){
+                registerAndLoginReturn.setWarning("两次密码输入不一致");
+            }else if(comparePassword == 3){
+                registerAndLoginReturn.setWarning("输入密码少于六个字符");
+            }else{
+                userService.changePassword(name, firstPassword);
+                registerAndLoginReturn.setIsSuccessful(true);
+                registerAndLoginReturn.setWarning("修改成功");
+                int id = userService.searchUserIdByName(name);
+                registerAndLoginReturn.setUserVO(makeUserVOById(id));
             }
         }
         return registerAndLoginReturn;
