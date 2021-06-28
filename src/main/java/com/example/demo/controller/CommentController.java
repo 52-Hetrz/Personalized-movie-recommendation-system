@@ -4,14 +4,13 @@ import com.example.demo.VO.CommentVO;
 import com.example.demo.dao.Comment;
 import com.example.demo.service.impl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * @ClassName CommentController
@@ -50,5 +49,10 @@ public class CommentController {
     public void deleteComment(HttpServletRequest httpServletRequest){
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
         commentService.deleteComment(id);
+    }
+
+    @GetMapping("/searchHotComments")
+    public ArrayList<CommentVO> searchHotComments(){
+        return commentService.searchHotComments();
     }
 }

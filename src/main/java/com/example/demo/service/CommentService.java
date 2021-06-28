@@ -50,4 +50,10 @@ public interface CommentService {
      * @param id 用户id
      */
     void deleteComment(int id);
+
+    /**
+     * 查找热门评论
+     * @return ArrayList<CommentVO> 包含热门评论的集合
+     */
+    ArrayList<CommentVO> searchHotComments();
 }

@@ -45,9 +45,7 @@ public class CommentServiceImpl implements CommentService {
         ArrayList<Comment> comments = commentMapper.selectCommentsByMovieId(movieId);
         ArrayList<CommentVO> commentVOS = new ArrayList<>();
         for(Comment comment: comments){
-            commentVOS.add(new CommentVO(comment,
-                    userService.searchUserNameById(comment.getUserid()),
-                    movieService.searchMovieNameById(comment.getMovieid())));
+            commentVOS.add(makeCommentVO(comment));
         }
         return commentVOS;
     }
@@ -55,9 +53,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentVO searchCommentById(int id) {
         Comment comment = commentMapper.selectCommentById(id);
-        return new CommentVO(comment,
-                userService.searchUserNameById(comment.getUserid()),
-                movieService.searchMovieNameById(comment.getMovieid()));
+        return makeCommentVO(comment);
     }
 
     @Override
@@ -73,5 +69,20 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteComment(int id) {
         commentMapper.deleteComment(id);
+    }
+
+    @Override
+    public ArrayList<CommentVO> searchHotComments() {
+        ArrayList<Comment> comments = commentMapper.searchHotComments();
+        ArrayList<CommentVO> commentVOS = new ArrayList<>();
+        for(Comment comment:comments)
+            commentVOS.add(makeCommentVO(comment));
+        return commentVOS;
+    }
+
+    CommentVO makeCommentVO(Comment comment){
+        return new CommentVO(comment,
+                userService.searchUserNameById(comment.getUserid()),
+                movieService.searchMovieNameById(comment.getMovieid()));
     }
 }

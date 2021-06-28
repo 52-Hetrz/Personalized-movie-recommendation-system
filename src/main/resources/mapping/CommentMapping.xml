@@ -55,4 +55,12 @@
         where id = #{movieid}
     </select>
 
+    <select id="searchHotComments" resultType="com.example.demo.dao.Comment">
+        select *
+        from comment
+        order by time DESC
+            limit 0,2
+
+    </select>
+
 </mapper>
